@@ -10,7 +10,7 @@
   home.stateVersion = "25.11";
 
   home.packages = [
-    pkgsUnstable.hello
+    pkgs.hello
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
