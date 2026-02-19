@@ -23,11 +23,3 @@ $env.config.keybindings ++= [
   }
 ]
 
-
-$env.config.shell_integration.osc2 = true
-$env.config.shell_integration.osc7 = true
-$env.config.shell_integration.osc8 = true
-$env.config.shell_integration.osc9_9 = true
-$env.config.shell_integration.osc133 = true
-$env.config.shell_integration.osc633 = true
-

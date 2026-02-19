@@ -10,7 +10,7 @@ let
     owner = "bennyyip";
     repo = "gruvbox-dark.yazi";
     rev = "619fdc5844db0c04f6115a62cf218e707de2821e";
-    hash = "sha256-GzPV4naRB1kSM54vM9m0/jdxyUc0NUb1kcPgHlSWwIw=";
+    hash = "sha256-Y/i+eS04T2+Sg/Z7/CGbuQHo5jxewXIgORTQm25uQb4=";
   };
 
   yaziGruvboxLightHard = pkgs.fetchFromGitHub {
