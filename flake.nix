@@ -64,7 +64,7 @@
               }
             )
 
-            ./home.nix
+            ./home
           ]
           ++ extraModules;
 
