@@ -37,6 +37,14 @@
     defaultEditor = true;
     viAlias = true;
     vimAlias = true;
+    withNodeJs = true;
+  };
+
+  programs.direnv = {
+    enable = true;
+    enableNushellIntegration = true;
+    nix-direnv.enable = true;
+    silent = true;
   };
 
   programs.home-manager.enable = true;

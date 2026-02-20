@@ -77,6 +77,7 @@ in
         "$hostname"
         " "
         "$directory"
+        "$direnv"
         "$character"
 
       ];
@@ -105,6 +106,17 @@ in
         truncate_to_repo = true;
         home_symbol = "~";
         style = "bold white";
+      };
+
+      direnv = {
+        disabled = false;
+
+        # Show only loaded/unloaded (no allowed/denied text)
+        format = "[$symbol$loaded](yellow)";
+        symbol = "  ";
+
+        loaded_msg = "";
+        unloaded_msg = " ";
       };
 
       cmd_duration = {
