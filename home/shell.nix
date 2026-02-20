@@ -1,4 +1,5 @@
 {
+  config,
   lib,
   pkgs,
   pkgsUnstable,
@@ -25,6 +26,9 @@ in
     enable = true;
     package = pkgsUnstable.nushell;
     configFile.source = ../dotfiles/config.nu;
+
+    # Workaround for: https://github.com/nix-community/home-manager/issues/4313
+    environmentVariables = config.home.sessionVariables;
   };
 
   home.shell.enableNushellIntegration = true;
