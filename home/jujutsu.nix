@@ -1,8 +1,39 @@
 {
+  lib,
+  config,
+  pkgs,
   pkgsUnstable,
   ...
 }:
+
+# NOTE: jujutsu doesn't have a built in nushell integration,
+# which means that we have to generate and link completions
+# manually.
+let
+  jjPkg = pkgsUnstable.jujutsu;
+
+  jjNuCompletion =
+    pkgs.runCommand "jj-nushell-completions"
+      {
+        nativeBuildInputs = [ jjPkg ];
+      }
+      ''
+        mkdir -p $out
+        jj util completion nushell > $out/completions-jj.nu
+      '';
+
+  nuCfgDirRel = lib.strings.removePrefix "${config.home.homeDirectory}/" config.programs.nushell.configDir;
+in
 {
+  home.file."jj-nushell-completions" = {
+    target = "${nuCfgDirRel}/completions-jj.nu";
+    source = "${jjNuCompletion}/completions-jj.nu";
+  };
+
+  programs.nushell.extraConfig = ''
+    use completions-jj.nu *
+  '';
+
   programs.jujutsu = {
     enable = true;
     package = pkgsUnstable.jujutsu;
