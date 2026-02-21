@@ -29,6 +29,7 @@
       taplo
       vtsls
       yaml-language-server
+      nil
     ];
   };
 }
