@@ -78,8 +78,6 @@
         system = systemLinux;
         username = "vidd";
         homeDirectory = "/home/vidd";
-
-        extraModules = [ ./linux-graphics.nix ];
       };
 
       homeConfigurations.darwin = makeHome {
