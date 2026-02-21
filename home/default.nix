@@ -12,11 +12,13 @@
   imports = [
     ./shell.nix
     ./jujutsu.nix
+    ./neovim.nix
   ];
 
   home.packages = [
     pkgs.ripgrep
     pkgs.difftastic
+    pkgsUnstable.tree-sitter
   ];
 
   home.file = {
@@ -30,14 +32,6 @@
       theme-dark = "gruvbox-dark";
       theme-light = "gruvbox-light";
     };
-  };
-
-  programs.neovim = {
-    enable = true;
-    defaultEditor = true;
-    viAlias = true;
-    vimAlias = true;
-    withNodeJs = true;
   };
 
   programs.direnv = {
