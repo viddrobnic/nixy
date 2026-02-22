@@ -17,6 +17,8 @@
   home.packages = [
     pkgs.ripgrep
     pkgs.difftastic
+    pkgs.git
+
     pkgsUnstable.tree-sitter
   ];
 
