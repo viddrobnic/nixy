@@ -74,6 +74,17 @@
         };
     in
     {
+      # Lib is used by private configs that extend this configuration
+      lib = {
+        inherit
+          systemLinux
+          systemDarwin
+          makePkgs
+          makePkgsUnstable
+          makeHome
+          ;
+      };
+
       homeConfigurations.linux = makeHome {
         system = systemLinux;
         username = "vidd";
