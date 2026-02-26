@@ -12,6 +12,7 @@
     ./shell.nix
     ./jujutsu.nix
     ./neovim.nix
+    ./opencode.nix
   ];
 
   home.packages = [
