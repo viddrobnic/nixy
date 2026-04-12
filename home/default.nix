@@ -38,6 +38,11 @@
   };
 
   programs.direnv = {
+    # TODO: Remove unstable package override.
+    # We use unstable package because stable one doesn't build on darwin:
+    # https://github.com/NixOS/nixpkgs/issues/507531
+    package = pkgsUnstable.direnv;
+
     enable = true;
     enableNushellIntegration = true;
     nix-direnv.enable = true;
