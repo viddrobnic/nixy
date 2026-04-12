@@ -6,6 +6,11 @@
     nixpkgs-darwin.url = "github:NixOS/nixpkgs/nixpkgs-25.11-darwin";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
+    rust-overlay = {
+      url = "github:oxalica/rust-overlay";
+      inputs.nixpkgs.follows = "nixpkgs-linux";
+    };
+
     home-manager = {
       url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs-linux";
@@ -17,6 +22,7 @@
       nixpkgs-linux,
       nixpkgs-darwin,
       nixpkgs-unstable,
+      rust-overlay,
       home-manager,
       ...
     }:
@@ -31,6 +37,7 @@
         in
         import nixpkgs {
           inherit system;
+          overlays = [ rust-overlay.overlays.default ];
 
           config.allowUnfree = true;
         };
