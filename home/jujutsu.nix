@@ -16,7 +16,7 @@
       signing = {
         behavior = "own";
         backend = "ssh";
-        key = "~/.ssh/id_ed25519.pub";
+        key = "~/.ssh/id_ed25519_git.pub";
       };
 
       ui = {

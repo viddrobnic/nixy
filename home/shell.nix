@@ -36,6 +36,7 @@ in
   programs.atuin = {
     enable = true;
     enableNushellIntegration = true;
+    package = pkgsUnstable.atuin;
     settings = {
       style = "compact";
       inline_height = 10;

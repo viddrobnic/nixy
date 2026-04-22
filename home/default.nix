@@ -20,8 +20,11 @@
     pkgs.ripgrep
     pkgs.difftastic
     pkgs.git
+    pkgs.ouch
+    pkgs.age
 
     pkgsUnstable.tree-sitter
+    pkgsUnstable.nixos-rebuild-ng
   ];
 
   home.file = {
