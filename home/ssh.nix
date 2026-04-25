@@ -38,9 +38,9 @@ in
 
     nixer = {
       hostname = "116.202.25.234";
-      user = "root";
+      user = "vidd";
       port = 2222;
-      identityFile = "~/.ssh/id_ed25519_git";
+      identityFile = "~/.ssh/id_ed25519_server";
       identitiesOnly = true;
       addKeysToAgent = addKeysToAgentConfirm;
 
