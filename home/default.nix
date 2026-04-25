@@ -14,6 +14,7 @@
     ./neovim.nix
     ./opencode.nix
     ./devenv.nix
+    ./ssh.nix
   ];
 
   home.packages = [
