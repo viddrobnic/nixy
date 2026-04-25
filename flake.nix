@@ -46,6 +46,16 @@
         system:
         import nixpkgs-unstable {
           inherit system;
+
+          # Disable check phase for direnv on darwin...
+          overlays = [
+            (final: prev: {
+              direnv = prev.direnv.overrideAttrs (old: {
+                doCheck = !prev.stdenv.hostPlatform.isDarwin;
+              });
+            })
+          ];
+
           config.allowUnfree = true;
         };
 
