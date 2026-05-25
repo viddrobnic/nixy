@@ -26,6 +26,8 @@
 
     pkgsUnstable.tree-sitter
     pkgsUnstable.nixos-rebuild-ng
+
+    pkgsUnstable.vscode-extensions.vadimcn.vscode-lldb.adapter
   ];
 
   home.file = {
