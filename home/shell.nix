@@ -60,6 +60,7 @@ in
     enable = true;
     package = pkgsUnstable.yazi;
     enableNushellIntegration = true;
+    shellWrapperName = "yy";
 
     flavors = {
       "gruvbox-dark" = yaziGruvboxDark;

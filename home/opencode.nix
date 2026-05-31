@@ -8,7 +8,7 @@
       "gruvbox-custom" = ../dotfiles/opencode-theme.json;
     };
 
-    settings = {
+    tui = {
       theme = "gruvbox-custom";
     };
   };

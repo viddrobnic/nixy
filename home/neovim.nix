@@ -11,6 +11,10 @@
     vimAlias = true;
 
     withNodeJs = true;
+    withRuby = false;
+    withPython3 = false;
+
+    sideloadInitLua = true;
 
     extraPackages = with pkgsUnstable; [
       astro-language-server
