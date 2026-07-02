@@ -23,9 +23,9 @@
     pkgs.git
     pkgs.ouch
     pkgs.age
-
     pkgs.sops
     pkgs.ssh-to-age
+    pkgs.restic
 
     pkgsUnstable.tree-sitter
     pkgsUnstable.nixos-rebuild-ng
