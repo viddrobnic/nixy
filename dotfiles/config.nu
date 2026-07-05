@@ -1,5 +1,8 @@
+use std/util "path add"
+
 $env.config.show_banner = false
 
+path add "~/Qt/6.11.1/macos/bin"
 
 $env.config.history.file_format = "sqlite"
 $env.config.history.max_size = 1_000_000
