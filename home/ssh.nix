@@ -20,13 +20,10 @@ in
         UseKeychain = useKeychain;
       };
 
-      personal = {
-        HostName = "49.13.94.210";
-        User = "root";
-        Port = 2222;
-        IdentityFile = "~/.ssh/id_ed25519_server";
+      "git.viddrobnic.com" = {
+        IdentityFile = "~/.ssh/id_ed25519_git";
         IdentitiesOnly = true;
-        AddKeysToAgent = addKeysToAgentConfirm;
+        AddKeysToAgent = "yes";
         UseKeychain = useKeychain;
       };
 
