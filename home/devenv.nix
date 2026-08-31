@@ -14,7 +14,11 @@ in
 {
   home.packages = [
     rust
-    pkgs.nodejs_24
+    pkgs.nodejs_26
     pkgsUnstable.bun
+
+    pkgsUnstable.vscode-extensions.vadimcn.vscode-lldb.adapter
+
+    pkgsUnstable.wrangler
   ];
 }
