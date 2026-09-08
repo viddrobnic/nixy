@@ -31,7 +31,7 @@
       spectral-language-server
       tailwindcss-language-server
       taplo
-      vtsls
+      typescript
       yaml-language-server
       nil
     ];
