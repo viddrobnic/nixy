@@ -20,5 +20,6 @@ in
     pkgsUnstable.vscode-extensions.vadimcn.vscode-lldb.adapter
 
     pkgsUnstable.wrangler
+    pkgsUnstable.codex
   ];
 }
