@@ -1,30 +1,11 @@
 {
   config,
   lib,
-  pkgs,
-  pkgsUnstable,
   ...
 }:
-
-let
-  yaziGruvboxDark = pkgs.fetchFromGitHub {
-    owner = "bennyyip";
-    repo = "gruvbox-dark.yazi";
-    rev = "619fdc5844db0c04f6115a62cf218e707de2821e";
-    hash = "sha256-Y/i+eS04T2+Sg/Z7/CGbuQHo5jxewXIgORTQm25uQb4=";
-  };
-
-  yaziGruvboxLightHard = pkgs.fetchFromGitHub {
-    owner = "viddrobnic";
-    repo = "gruvbox-light-hard.yazi";
-    rev = "93b11906400a3af0b8abd506964e20108be10d6b";
-    hash = "sha256-GzPV4naRB1kSM54vM9m0/jdxyUc0NUb1kcPgHlSWwIw=";
-  };
-in
 {
   programs.nushell = {
     enable = true;
-    package = pkgsUnstable.nushell;
     configFile.source = ../dotfiles/config.nu;
 
     # Workaround for: https://github.com/nix-community/home-manager/issues/4313
@@ -36,7 +17,6 @@ in
   programs.atuin = {
     enable = true;
     enableNushellIntegration = true;
-    package = pkgsUnstable.atuin;
     settings = {
       style = "compact";
       inline_height = 10;
@@ -54,23 +34,6 @@ in
     enable = true;
     enableNushellIntegration = true;
     options = [ "--cmd cd" ];
-  };
-
-  programs.yazi = {
-    enable = true;
-    package = pkgsUnstable.yazi;
-    enableNushellIntegration = true;
-    shellWrapperName = "yy";
-
-    flavors = {
-      "gruvbox-dark" = yaziGruvboxDark;
-      "gruvbox-light-hard" = yaziGruvboxLightHard;
-    };
-
-    theme = {
-      flavor.dark = "gruvbox-dark";
-      flavor.light = "gruvbox-light-hard";
-    };
   };
 
   programs.starship = {

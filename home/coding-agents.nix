@@ -1,8 +1,7 @@
-{ pkgsUnstable, ... }:
+{ ... }:
 {
   programs.opencode = {
     enable = true;
-    package = pkgsUnstable.opencode;
 
     themes = {
       "gruvbox-custom" = ../dotfiles/opencode-theme.json;
@@ -12,4 +11,6 @@
       theme = "gruvbox-custom";
     };
   };
+
+  programs.codex.enable = true;
 }

@@ -2,26 +2,22 @@
   description = "My shiny new nix config";
 
   inputs = {
-    nixpkgs-linux.url = "github:NixOS/nixpkgs/nixos-26.05";
-    nixpkgs-darwin.url = "github:NixOS/nixpkgs/nixpkgs-26.05-darwin";
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
     rust-overlay = {
       url = "github:oxalica/rust-overlay";
-      inputs.nixpkgs.follows = "nixpkgs-linux";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-26.05";
-      inputs.nixpkgs.follows = "nixpkgs-linux";
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
   outputs =
     {
-      nixpkgs-linux,
-      nixpkgs-darwin,
-      nixpkgs-unstable,
+      nixpkgs,
       rust-overlay,
       home-manager,
       ...
@@ -32,9 +28,6 @@
 
       makePkgs =
         system:
-        let
-          nixpkgs = if system == systemDarwin then nixpkgs-darwin else nixpkgs-linux;
-        in
         import nixpkgs {
           inherit system;
           overlays = [ rust-overlay.overlays.default ];
@@ -42,24 +35,16 @@
           config.allowUnfree = true;
         };
 
-      makePkgsUnstable =
-        system:
-        import nixpkgs-unstable {
-          inherit system;
+      # Disable check phase for direnv on darwin...
+      # overlays = [
+      #   (final: prev: {
+      #     direnv = prev.direnv.overrideAttrs (old: {
+      #       doCheck = !prev.stdenv.hostPlatform.isDarwin;
+      #     });
+      #   })
+      # ];
 
-          # Disable check phase for direnv on darwin...
-          overlays = [
-            (final: prev: {
-              direnv = prev.direnv.overrideAttrs (old: {
-                doCheck = !prev.stdenv.hostPlatform.isDarwin;
-              });
-            })
-          ];
-
-          config.allowUnfree = true;
-        };
-
-      forAllSystems = nixpkgs-unstable.lib.genAttrs nixpkgs-unstable.lib.systems.flakeExposed;
+      forAllSystems = nixpkgs.lib.genAttrs nixpkgs.lib.systems.flakeExposed;
 
       makeHome =
         {
@@ -84,10 +69,6 @@
             ./home
           ]
           ++ extraModules;
-
-          extraSpecialArgs = {
-            pkgsUnstable = makePkgsUnstable system;
-          };
         };
     in
     {
@@ -97,7 +78,6 @@
           systemLinux
           systemDarwin
           makePkgs
-          makePkgsUnstable
           makeHome
           ;
       };
@@ -114,6 +94,6 @@
         homeDirectory = "/Users/vidd";
       };
 
-      formatter = forAllSystems (system: nixpkgs-unstable.legacyPackages.${system}.nixfmt-tree);
+      formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.nixfmt-tree);
     };
 }

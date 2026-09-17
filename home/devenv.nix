@@ -1,7 +1,6 @@
-# Install some packages used for dev that are used as fallback
-# for projects not yet migrated to nix
-
-{ pkgs, pkgsUnstable, ... }:
+# Project environment integration and fallback toolchains for projects that do
+# not provide their own Nix development shell yet.
+{ pkgs, ... }:
 let
   rust = pkgs.rust-bin.stable.latest.default.override {
     extensions = [
@@ -15,11 +14,16 @@ in
   home.packages = [
     rust
     pkgs.nodejs_26
-    pkgsUnstable.bun
+    pkgs.bun
 
-    pkgsUnstable.vscode-extensions.vadimcn.vscode-lldb.adapter
-
-    pkgsUnstable.wrangler
-    pkgsUnstable.codex
+    pkgs.vscode-extensions.vadimcn.vscode-lldb.adapter
+    pkgs.wrangler
   ];
+
+  programs.direnv = {
+    enable = true;
+    enableNushellIntegration = true;
+    nix-direnv.enable = true;
+    silent = true;
+  };
 }

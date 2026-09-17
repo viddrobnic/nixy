@@ -1,12 +1,9 @@
+{ pkgs, ... }:
 {
-  pkgsUnstable,
-  ...
-}:
+  home.packages = [ pkgs.git ];
 
-{
   programs.jujutsu = {
     enable = true;
-    package = pkgsUnstable.jujutsu;
     settings = {
       user = {
         name = "Vid Drobnič";

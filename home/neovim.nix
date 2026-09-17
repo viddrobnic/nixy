@@ -1,5 +1,5 @@
 {
-  pkgsUnstable,
+  pkgs,
   ...
 }:
 {
@@ -16,7 +16,7 @@
 
     sideloadInitLua = true;
 
-    extraPackages = with pkgsUnstable; [
+    extraPackages = with pkgs; [
       astro-language-server
       clang-tools
       cmake-language-server
@@ -31,6 +31,7 @@
       spectral-language-server
       tailwindcss-language-server
       taplo
+      tree-sitter
       typescript
       yaml-language-server
       nil

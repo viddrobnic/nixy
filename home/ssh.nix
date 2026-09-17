@@ -1,6 +1,6 @@
 { pkgs, lib, ... }:
 let
-  isDarwin = pkgs.stdenv.isDarwin;
+  isDarwin = pkgs.stdenv.hostPlatform.isDarwin;
 
   # I haven't gotten macos to play nicely with 'confirm' option yet. Until then,
   # just add keys to agent always.
