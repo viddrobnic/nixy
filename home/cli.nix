@@ -25,6 +25,8 @@ in
     sops
     ssh-to-age
     nixos-rebuild-ng
+    typst
+    typstyle
   ];
 
   programs.bat = {
