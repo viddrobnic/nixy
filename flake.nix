@@ -4,6 +4,8 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
+    llm-agents.url = "github:numtide/llm-agents.nix";
+
     rust-overlay = {
       url = "github:oxalica/rust-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -18,6 +20,7 @@
   outputs =
     {
       nixpkgs,
+      llm-agents,
       rust-overlay,
       home-manager,
       ...
@@ -35,15 +38,6 @@
           config.allowUnfree = true;
         };
 
-      # Disable check phase for direnv on darwin...
-      # overlays = [
-      #   (final: prev: {
-      #     direnv = prev.direnv.overrideAttrs (old: {
-      #       doCheck = !prev.stdenv.hostPlatform.isDarwin;
-      #     });
-      #   })
-      # ];
-
       forAllSystems = nixpkgs.lib.genAttrs nixpkgs.lib.systems.flakeExposed;
 
       makeHome =
@@ -52,10 +46,16 @@
           username,
           homeDirectory,
           extraModules ? [ ],
+          extraSpecialArgs ? { },
         }:
 
         home-manager.lib.homeManagerConfiguration {
           pkgs = makePkgs system;
+
+          extraSpecialArgs = {
+            llm-agents = llm-agents.packages.${system};
+          }
+          // extraSpecialArgs;
 
           modules = [
             (
@@ -69,6 +69,7 @@
             ./home
           ]
           ++ extraModules;
+
         };
     in
     {
