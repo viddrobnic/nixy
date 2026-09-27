@@ -6,11 +6,6 @@
 
     llm-agents.url = "github:numtide/llm-agents.nix";
 
-    rust-overlay = {
-      url = "github:oxalica/rust-overlay";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -21,7 +16,6 @@
     {
       nixpkgs,
       llm-agents,
-      rust-overlay,
       home-manager,
       ...
     }:
@@ -33,8 +27,6 @@
         system:
         import nixpkgs {
           inherit system;
-          overlays = [ rust-overlay.overlays.default ];
-
           config.allowUnfree = true;
         };
 

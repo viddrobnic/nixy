@@ -11,10 +11,14 @@
 
   # home manager opencode doesn't support new cli.json yet, so we write it manually.
   # We still use home manager for theme management though...
-  xdg.configFile."opencode/cli.json".text = builtins.toJSON {
-    "$schema" = "https://opencode.ai/v2/cli.json";
-    theme.name = "gruvbox-custom";
-    tabs.mode = "off";
+  xdg.configFile."opencode/cli.json" = {
+    force = true;
+
+    text = builtins.toJSON {
+      "$schema" = "https://opencode.ai/v2/cli.json";
+      theme.name = "gruvbox-custom";
+      tabs.mode = "off";
+    };
   };
 
   programs.codex.enable = true;

@@ -1,18 +1,15 @@
 # Project environment integration and fallback toolchains for projects that do
 # not provide their own Nix development shell yet.
 { pkgs, ... }:
-let
-  rust = pkgs.rust-bin.stable.latest.default.override {
-    extensions = [
-      "rust-src"
-      "rust-analyzer"
-      "llvm-tools"
-    ];
-  };
-in
 {
   home.packages = [
-    rust
+    pkgs.rustc
+    pkgs.cargo
+    pkgs.rustfmt
+    pkgs.clippy
+    pkgs.rust-analyzer
+    pkgs.llvmPackages.llvm
+
     pkgs.nodejs_26
     pkgs.bun
 
