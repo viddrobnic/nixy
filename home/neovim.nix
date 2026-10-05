@@ -35,6 +35,7 @@
       typescript
       yaml-language-server
       nil
+      djlint
     ];
   };
 }
