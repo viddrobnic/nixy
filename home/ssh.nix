@@ -20,7 +20,7 @@ in
         UseKeychain = useKeychain;
       };
 
-      "git.viddrobnic.com" = {
+      "git.drobnic.dev" = {
         IdentityFile = "~/.ssh/id_ed25519_git";
         IdentitiesOnly = true;
         AddKeysToAgent = "yes";
