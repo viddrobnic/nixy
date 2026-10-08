@@ -7,7 +7,7 @@
     settings = {
       user = {
         name = "Vid Drobnič";
-        email = "me@viddrobnic.com";
+        email = "vid@drobnic.dev";
       };
 
       signing = {
