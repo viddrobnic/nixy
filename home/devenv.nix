@@ -2,19 +2,22 @@
 # not provide their own Nix development shell yet.
 { pkgs, ... }:
 {
-  home.packages = [
-    pkgs.rustc
-    pkgs.cargo
-    pkgs.rustfmt
-    pkgs.clippy
-    pkgs.rust-analyzer
-    pkgs.llvmPackages.llvm
+  home.packages = with pkgs; [
+    rustc
+    cargo
+    rustfmt
+    clippy
+    rust-analyzer
+    llvmPackages.llvm
 
-    pkgs.nodejs_26
-    pkgs.bun
+    nodejs_26
+    bun
 
-    pkgs.vscode-extensions.vadimcn.vscode-lldb.adapter
-    pkgs.wrangler
+    defaultBeam.erlang
+    defaultBeam.elixir
+
+    vscode-extensions.vadimcn.vscode-lldb.adapter
+    wrangler
   ];
 
   programs.direnv = {

@@ -36,6 +36,7 @@
       yaml-language-server
       nil
       djlint
+      defaultBeam.elixir-ls
     ];
   };
 }
