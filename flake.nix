@@ -4,8 +4,6 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
-    llm-agents.url = "github:numtide/llm-agents.nix";
-
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -15,7 +13,6 @@
   outputs =
     {
       nixpkgs,
-      llm-agents,
       home-manager,
       ...
     }:
@@ -44,10 +41,7 @@
         home-manager.lib.homeManagerConfiguration {
           pkgs = makePkgs system;
 
-          extraSpecialArgs = {
-            llm-agents = llm-agents.packages.${system};
-          }
-          // extraSpecialArgs;
+          inherit extraSpecialArgs;
 
           modules = [
             (
