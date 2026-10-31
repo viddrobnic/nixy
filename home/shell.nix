@@ -1,5 +1,4 @@
 {
-  config,
   lib,
   ...
 }:
@@ -8,8 +7,7 @@
     enable = true;
     configFile.source = ../dotfiles/config.nu;
 
-    # Workaround for: https://github.com/nix-community/home-manager/issues/4313
-    environmentVariables = config.home.sessionVariables;
+    loadSessionVariables = true;
   };
 
   home.shell.enableNushellIntegration = true;
