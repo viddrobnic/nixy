@@ -20,13 +20,6 @@
       systemLinux = "x86_64-linux";
       systemDarwin = "aarch64-darwin";
 
-      makePkgs =
-        system:
-        import nixpkgs {
-          inherit system;
-          config.allowUnfree = true;
-        };
-
       forAllSystems = nixpkgs.lib.genAttrs nixpkgs.lib.systems.flakeExposed;
 
       makeHome =
@@ -34,14 +27,14 @@
           system,
           username,
           homeDirectory,
-          extraModules ? [ ],
-          extraSpecialArgs ? { },
         }:
 
         home-manager.lib.homeManagerConfiguration {
-          pkgs = makePkgs system;
 
-          inherit extraSpecialArgs;
+          pkgs = import nixpkgs {
+            inherit system;
+            config.allowUnfree = true;
+          };
 
           modules = [
             (
@@ -49,36 +42,38 @@
               {
                 home.username = username;
                 home.homeDirectory = homeDirectory;
+
+                # NOTE: Don't change!
+                home.stateVersion = "25.11";
               }
             )
 
             ./home
-          ]
-          ++ extraModules;
-
+          ];
         };
     in
     {
-      # Lib is used by private configs that extend this configuration
       lib = {
         inherit
           systemLinux
           systemDarwin
-          makePkgs
-          makeHome
           ;
       };
 
-      homeConfigurations.linux = makeHome {
-        system = systemLinux;
-        username = "vidd";
-        homeDirectory = "/home/vidd";
-      };
+      homeManagerModules.default = ./home;
 
-      homeConfigurations.darwin = makeHome {
-        system = systemDarwin;
-        username = "vidd";
-        homeDirectory = "/Users/vidd";
+      homeConfigurations = {
+        linux = makeHome {
+          system = systemLinux;
+          username = "vidd";
+          homeDirectory = "/home/vidd";
+        };
+
+        darwin = makeHome {
+          system = systemDarwin;
+          username = "vidd";
+          homeDirectory = "/Users/vidd";
+        };
       };
 
       formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.nixfmt-tree);

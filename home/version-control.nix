@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
   home.packages = [ pkgs.git ];
 
@@ -6,14 +6,14 @@
     enable = true;
     settings = {
       user = {
-        name = "Vid Drobnič";
-        email = "vid@drobnic.dev";
+        name = lib.mkDefault "Vid Drobnič";
+        email = lib.mkDefault "vid@drobnic.dev";
       };
 
       signing = {
         behavior = "own";
         backend = "ssh";
-        key = "~/.ssh/id_ed25519_git.pub";
+        key = lib.mkDefault "~/.ssh/id_ed25519_git.pub";
       };
 
       ui = {

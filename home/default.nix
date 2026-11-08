@@ -1,8 +1,5 @@
 { ... }:
 {
-  # NOTE: Don't change!
-  home.stateVersion = "25.11";
-
   nixpkgs.overlays = [
     (final: prev: {
       defaultBeam = prev.beam29Packages;
