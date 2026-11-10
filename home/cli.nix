@@ -27,6 +27,7 @@ in
     nixos-rebuild-ng
     typst
     typstyle
+    dix
   ];
 
   programs.bat = {
