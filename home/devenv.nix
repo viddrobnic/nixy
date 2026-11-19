@@ -8,6 +8,7 @@
     rustfmt
     clippy
     rust-analyzer
+    cargo-audit
     llvmPackages.llvm
 
     nodejs_26
