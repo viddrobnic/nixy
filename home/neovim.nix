@@ -24,8 +24,7 @@
       golangci-lint-langserver
       gopls
       lua-language-server
-      prettier
-      prettierd
+      oxfmt
       pyright
       ruff
       spectral-language-server
